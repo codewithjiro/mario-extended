@@ -2,7 +2,7 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { sql } from "drizzle-orm";
-import { index, pgTableCreator } from "drizzle-orm/pg-core";
+import { index, pgTableCreator, varchar } from "drizzle-orm/pg-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -36,8 +36,10 @@ export const characters = createTable("characters", (d) => ({
 
 export const powerups = createTable("powerups", (d) => ({
   id: d.serial("id").primaryKey(),
-  name: d.varchar("name", { length: 50 }).notNull(),
-  effect: d.text("effect"),
-  rarity: d.varchar("rarity", { length: 20 }),
-  imageUrl: d.varchar("image_url", { length: 512 }),
+  name: d.varchar("name", { length: 255 }).notNull(),
+  effect: d.varchar("effect", { length: 255 }),
+  rarity: d.varchar("rarity", { length: 50 }).default("Common"),
+  description: d.text("description"),
+  imageUrl: d.text("image_url"),
+  type: d.varchar("type", { length: 100 }).default("Power-up"),
 }));

@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { dark } from "@clerk/themes";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Mario Extended App",
@@ -20,16 +21,19 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider
-      afterSignInUrl="/dashboard"
-      afterSignOutUrl="/"
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
-      <html lang="en" className={`${geist.variable}`}>
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
+    <body>
+      <ClerkProvider
+        afterSignInUrl="/dashboard"
+        afterSignOutUrl="/"
+        appearance={{
+          baseTheme: dark,
+        }}
+      >
+        <html lang="en" className={`${geist.variable}`}>
+          <body>{children}</body>
+        </html>
+      </ClerkProvider>
+      <Toaster richColors position="bottom-right" />
+    </body>
   );
 }
