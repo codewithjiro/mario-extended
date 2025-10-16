@@ -15,7 +15,7 @@ import {
   Trophy,
   Shield,
   Coins,
-  Rocket
+  Rocket,
 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
@@ -53,10 +53,10 @@ type KeyItem = {
 };
 
 export default function DashboardPage() {
-  const { user } = useUser(); 
+  const { user } = useUser();
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState(""); 
-  const [justCreated, setjustCreated] = useState<{ 
+  const [name, setName] = useState("");
+  const [justCreated, setjustCreated] = useState<{
     key: string;
     id: string;
   } | null>(null);
@@ -114,32 +114,34 @@ export default function DashboardPage() {
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-8 sm:px-6 lg:px-8">
         {/* Animated Background Elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="pointer-events-none fixed inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-red-500/10 blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-yellow-500/10 blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-blue-500/5 blur-3xl"></div>
         </div>
 
-        <div className="mx-auto max-w-7xl space-y-8 relative z-10">
+        <div className="relative z-10 mx-auto max-w-7xl space-y-8">
           {/* Header */}
           <motion.header
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-between rounded-2xl border border-gray-700 bg-gray-800/80 p-6 backdrop-blur-xl shadow-2xl"
+            className="flex items-center justify-between rounded-2xl border border-gray-700 bg-gray-800/80 p-6 shadow-2xl backdrop-blur-xl"
           >
             <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-500 rounded-xl blur-md opacity-75"></div>
-                <div className="relative bg-gradient-to-r from-red-500 to-yellow-500 p-3 rounded-xl">
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500 to-yellow-500 opacity-75 blur-md"></div>
+                <div className="relative rounded-xl bg-gradient-to-r from-red-500 to-yellow-500 p-3">
                   <Rocket className="h-7 w-7 text-white" />
                 </div>
               </div>
               <div>
-                <h1 className="bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-3xl font-black text-transparent bg-size-200 animate-gradient">
+                <h1 className="bg-size-200 animate-gradient bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-3xl font-black text-transparent">
                   MarioX
                 </h1>
-                <p className="text-sm text-gray-400 mt-1">API Power-Up Dashboard</p>
+                <p className="mt-1 text-sm text-gray-400">
+                  API Power-Up Dashboard
+                </p>
               </div>
             </div>
 
@@ -171,13 +173,13 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card className="overflow-hidden border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl shadow-2xl">
+            <Card className="overflow-hidden border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 shadow-2xl backdrop-blur-xl">
               <CardContent className="p-0">
                 <div className="flex flex-col items-start gap-8 p-8 md:flex-row md:items-center">
                   <div className="flex-1 space-y-6">
                     <div>
-                      <Badge className="mb-3 bg-gradient-to-r from-red-500 to-yellow-500 text-white border-0">
-                        <Sparkles className="h-3 w-3 mr-1" />
+                      <Badge className="mb-3 border-0 bg-gradient-to-r from-red-500 to-yellow-500 text-white">
+                        <Sparkles className="mr-1 h-3 w-3" />
                         Welcome Back, Hero!
                       </Badge>
                       <h2 className="text-3xl font-black text-white">
@@ -187,7 +189,8 @@ export default function DashboardPage() {
                         </span>
                       </h2>
                       <p className="mt-3 text-lg text-gray-300">
-                        Manage your Power-Up keys and conquer the API world with MarioX magic!
+                        Manage your Power-Up keys and conquer the API world with
+                        MarioX magic!
                       </p>
                     </div>
 
@@ -197,7 +200,9 @@ export default function DashboardPage() {
                           <Key className="h-4 w-4 text-red-400" />
                         </div>
                         <div>
-                          <div className="text-2xl font-bold text-white">{items.length}</div>
+                          <div className="text-2xl font-bold text-white">
+                            {items.length}
+                          </div>
                           <div className="text-sm text-gray-400">Power-Ups</div>
                         </div>
                       </div>
@@ -244,7 +249,8 @@ export default function DashboardPage() {
                     <Shield className="h-5 w-5 text-yellow-500" />
                     <p className="text-sm text-gray-300">
                       <strong className="text-yellow-400">Pro Tip:</strong>{" "}
-                      Guard your Power-Ups like stars! Rotate them regularly and revoke when not in use.
+                      Guard your Power-Ups like stars! Rotate them regularly and
+                      revoke when not in use.
                     </p>
                   </div>
                 </div>
@@ -258,7 +264,7 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl shadow-2xl">
+            <Card className="border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 shadow-2xl backdrop-blur-xl">
               <CardHeader className="pb-6">
                 <div className="flex items-center justify-between">
                   <div className="space-y-2">
@@ -279,20 +285,20 @@ export default function DashboardPage() {
                   <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger asChild>
                       <Button
-                        className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-yellow-500 text-white shadow-lg transition-all hover:from-red-600 hover:to-yellow-600 hover:shadow-xl hover:scale-105"
+                        className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-yellow-500 text-white shadow-lg transition-all hover:scale-105 hover:from-red-600 hover:to-yellow-600 hover:shadow-xl"
                         aria-label="Create API Key"
                       >
                         <Plus className="h-4 w-4" /> New Power-Up
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="border-0 bg-gray-800/95 backdrop-blur-xl text-white shadow-2xl">
+                    <DialogContent className="border-0 bg-gray-800/95 text-white shadow-2xl backdrop-blur-xl">
                       <DialogHeader>
                         <div className="flex items-center gap-3">
                           <div className="rounded-lg bg-gradient-to-r from-red-500 to-yellow-500 p-2">
                             <Crown className="h-5 w-5 text-white" />
                           </div>
                           <div>
-                            <DialogTitle className="text-white text-xl">
+                            <DialogTitle className="text-xl text-white">
                               Create New Power-Up
                             </DialogTitle>
                             <DialogDescription className="text-gray-400">
@@ -307,14 +313,14 @@ export default function DashboardPage() {
                           aria-label="API Key Name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="border-gray-600 bg-gray-700/50 text-white placeholder:text-gray-400 backdrop-blur-sm focus:border-yellow-500"
+                          className="border-gray-600 bg-gray-700/50 text-white backdrop-blur-sm placeholder:text-gray-400 focus:border-yellow-500"
                         />
                       </div>
                       <DialogFooter>
                         <Button
                           onClick={createKey}
                           disabled={loading}
-                          className="bg-gradient-to-r from-red-500 to-yellow-500 text-white transition-all hover:from-red-600 hover:to-yellow-600 hover:shadow-lg w-full"
+                          className="w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white transition-all hover:from-red-600 hover:to-yellow-600 hover:shadow-lg"
                         >
                           {loading ? (
                             <div className="flex items-center gap-2">
@@ -347,18 +353,23 @@ export default function DashboardPage() {
                           <Coins className="h-5 w-5 text-yellow-500" />
                         </div>
                         <div>
-                          <p className="font-semibold text-yellow-500">Your New Power-Up Key!</p>
-                          <p className="text-sm text-yellow-400/80">Guard this like a precious star ⭐</p>
+                          <p className="font-semibold text-yellow-500">
+                            Your New Power-Up Key!
+                          </p>
+                          <p className="text-sm text-yellow-400/80">
+                            Guard this like a precious star ⭐
+                          </p>
                         </div>
                       </div>
                       <div className="mt-4 flex items-center gap-3 rounded-xl border border-gray-600 bg-gray-800/50 p-4 backdrop-blur-sm">
-                        <code className="flex-1 text-sm break-all text-gray-200 font-mono">
+                        <code className="flex-1 font-mono text-sm break-all text-gray-200">
                           {justCreated.key}
                         </code>
                         <CopyButton value={justCreated.key} />
                       </div>
                       <p className="mt-3 text-xs text-yellow-400/70">
-                        🎮 This key will only be shown once! Save it somewhere safe.
+                        🎮 This key will only be shown once! Save it somewhere
+                        safe.
                       </p>
                     </motion.div>
                   )}
@@ -373,7 +384,7 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl shadow-2xl">
+            <Card className="border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 shadow-2xl backdrop-blur-xl">
               <CardHeader className="border-b border-gray-700 pb-6">
                 <div className="flex items-center justify-between">
                   <div className="space-y-2">
@@ -395,7 +406,7 @@ export default function DashboardPage() {
                     variant="outline"
                     className="border-green-500/50 bg-green-500/10 text-green-400 backdrop-blur-sm"
                   >
-                    <Zap className="h-3 w-3 mr-1" />
+                    <Zap className="mr-1 h-3 w-3" />
                     {items.filter((i) => !i.revoked).length} Active
                   </Badge>
                 </div>
@@ -421,14 +432,14 @@ export default function DashboardPage() {
                         >
                           <div className="space-y-4">
                             <div className="flex items-start justify-between">
-                              <h3 className="font-bold text-white text-lg">
+                              <h3 className="text-lg font-bold text-white">
                                 {row.name}
                               </h3>
                               <Badge
                                 className={`rounded-full px-3 py-1 text-xs font-semibold ${
                                   row.revoked
-                                    ? "bg-red-500/20 text-red-400 border-red-500/30"
-                                    : "bg-green-500/20 text-green-400 border-green-500/30"
+                                    ? "border-red-500/30 bg-red-500/20 text-red-400"
+                                    : "border-green-500/30 bg-green-500/20 text-green-400"
                                 } border backdrop-blur-sm`}
                               >
                                 {row.revoked ? "Revoked" : "Active"}
@@ -436,7 +447,7 @@ export default function DashboardPage() {
                             </div>
 
                             <div className="rounded-xl border border-gray-600 bg-gray-700/50 p-4 backdrop-blur-sm">
-                              <code className="text-sm break-all text-gray-200 font-mono">
+                              <code className="font-mono text-sm break-all text-gray-200">
                                 {row.masked}
                               </code>
                             </div>
@@ -485,8 +496,9 @@ export default function DashboardPage() {
                       <h3 className="mt-6 text-xl font-bold text-white">
                         No Power-Ups Yet!
                       </h3>
-                      <p className="mt-3 text-gray-400 max-w-sm">
-                        Start your adventure by creating your first Power-Up key to unlock the Mario universe API.
+                      <p className="mt-3 max-w-sm text-gray-400">
+                        Start your adventure by creating your first Power-Up key
+                        to unlock the Mario universe API.
                       </p>
                     </motion.div>
                   )}
@@ -500,7 +512,7 @@ export default function DashboardPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="rounded-2xl border border-gray-700 bg-gray-800/80 p-6 backdrop-blur-xl shadow-xl"
+            className="rounded-2xl border border-gray-700 bg-gray-800/80 p-6 shadow-xl backdrop-blur-xl"
           >
             <div className="flex items-center gap-4">
               <div className="rounded-lg bg-blue-500/20 p-3">
@@ -508,14 +520,14 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-300">
-                  <strong className="text-blue-400">Adventure Tip:</strong>{" "}
-                  Use your Power-Ups with the{" "}
-                  <code className="rounded-lg border border-gray-600 bg-gray-700/50 px-2 py-1 text-yellow-400 font-mono">
+                  <strong className="text-blue-400">Adventure Tip:</strong> Use
+                  your Power-Ups with the{" "}
+                  <code className="rounded-lg border border-gray-600 bg-gray-700/50 px-2 py-1 font-mono text-yellow-400">
                     x-api-key
                   </code>{" "}
                   header.{" "}
                   <Link
-                    className="text-yellow-400 underline hover:text-yellow-300 transition-colors"
+                    className="text-yellow-400 underline transition-colors hover:text-yellow-300"
                     href="/docs"
                   >
                     Check the Adventure Guide

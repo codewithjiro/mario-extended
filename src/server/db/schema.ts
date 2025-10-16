@@ -25,25 +25,19 @@ export const apiKeys = createTable("api_keys", (d) => ({
   revoked: d.boolean("revoked").notNull().default(false),
 }));
 
-export const characters = createTable(
-  "characters",
-  (d) => ({
-    id: d.serial("id").primaryKey(),
-    name: d.varchar("name", { length: 50 }).notNull(),
-    type: d.varchar("type", { length: 20 }).notNull(), // Hero / Enemy
-    power: d.varchar("power", { length: 50 }).notNull(),
-    description: d.text("description"),
-    imageUrl: d.varchar("image_url", { length: 512 }),
-  }),
-);
+export const characters = createTable("characters", (d) => ({
+  id: d.serial("id").primaryKey(),
+  name: d.varchar("name", { length: 50 }).notNull(),
+  type: d.varchar("type", { length: 20 }).notNull(),
+  power: d.varchar("power", { length: 50 }).notNull(),
+  description: d.text("description"),
+  imageUrl: d.varchar("image_url", { length: 512 }),
+}));
 
-export const powerups = createTable(
-  "powerups",
-  (d) => ({
-    id: d.serial("id").primaryKey(),
-    name: d.varchar("name", { length: 50 }).notNull(),
-    effect: d.text("effect"),
-    rarity: d.varchar("rarity", { length: 20 }),
-    imageUrl: d.varchar("image_url", { length: 512 }),
-  }),
-);
+export const powerups = createTable("powerups", (d) => ({
+  id: d.serial("id").primaryKey(),
+  name: d.varchar("name", { length: 50 }).notNull(),
+  effect: d.text("effect"),
+  rarity: d.varchar("rarity", { length: 20 }),
+  imageUrl: d.varchar("image_url", { length: 512 }),
+}));

@@ -7,13 +7,12 @@ export async function GET(req: NextRequest) {
   const apiKey = req.headers.get("x-api-key") ?? "";
   const result = await verifyKey(apiKey);
 
-
   // Check if the API key is valid
   if (!result.valid) {
     return Response.json({ error: result.reason }, { status: 401 });
   }
 
-    // Fetch all data from the table
+  // Fetch all data from the table
   const allData = await db.select().from(characters);
 
   return Response.json(

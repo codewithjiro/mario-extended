@@ -54,12 +54,12 @@ export async function revokeKey(id: string) {
 
 export async function verifyKey(apiKey: string) {
   const hashed = sha256(apiKey);
-  const rows = await db 
-  .select({id: apiKeys.id, revoked: apiKeys.revoked})
-  .from(apiKeys)
-  .where(eq(apiKeys.hashedKey, hashed));
+  const rows = await db
+    .select({ id: apiKeys.id, revoked: apiKeys.revoked })
+    .from(apiKeys)
+    .where(eq(apiKeys.hashedKey, hashed));
   const row = rows[0];
-  if(!row) return { valid: false, reason: "not_found" } as const;
-  if(row.revoked) return { valid: false as const, reason: "revoked" } as const;
+  if (!row) return { valid: false, reason: "not_found" } as const;
+  if (row.revoked) return { valid: false as const, reason: "revoked" } as const;
   return { valid: true, keyId: row.id } as const;
 }
