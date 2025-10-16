@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { ilike } from "drizzle-orm";
 import { db } from "~/server/db";
-import { characters } from "~/server/db/schema";
+import { characters, powerups } from "~/server/db/schema";
 import { verifyKey } from "~/server/key";
 
 export async function POST(req: NextRequest) {
@@ -16,27 +16,25 @@ export async function POST(req: NextRequest) {
 
   if (!body || !body.postBody) {
     return Response.json(
-      { error: "Invalid request body. input is required." },
+      { error: "Invalid request body. 'postBody' is required." },
       { status: 400 },
     );
   }
 
   try {
-    const getCharacter = await db
-      .select({
-        id: characters.id,
-        name: characters.name,
-        type: characters.type,
-        power: characters.power,
-        description: characters.description,
-        imageUrl: characters.imageUrl,
-      })
+    const foundCharacters = await db
+      .select()
       .from(characters)
       .where(ilike(characters.name, `%${body.postBody}%`));
 
-    if (getCharacter.length === 0) {
+    const foundPowerups = await db
+      .select()
+      .from(powerups)
+      .where(ilike(powerups.name, `%${body.postBody}%`));
+
+    if (foundCharacters.length === 0 && foundPowerups.length === 0) {
       return Response.json(
-        { error: "No character found with the given name." },
+        { error: "No results found in either table." },
         { status: 404 },
       );
     }
@@ -44,15 +42,16 @@ export async function POST(req: NextRequest) {
     return Response.json(
       {
         ok: true,
-        message: "Character found successfully.",
-        character: getCharacter[0],
+        message: "Search completed successfully.",
         keyId: result.keyId,
+        characters: foundCharacters,
+        powerups: foundPowerups,
       },
       { status: 200 },
     );
   } catch (error: any) {
     return Response.json(
-      { error: error.message ?? "Failed to fetch character." },
+      { error: error.message ?? "Failed to process search." },
       { status: 500 },
     );
   }

@@ -132,7 +132,7 @@ export default function DashboardPage() {
               <div className="relative">
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500 to-yellow-500 opacity-75 blur-md"></div>
                 <div className="relative rounded-xl bg-gradient-to-r from-red-500 to-yellow-500 p-3">
-                  <Rocket className="h-7 w-7 text-white" />
+                  <Gamepad2 className="h-7 w-7 text-white" />
                 </div>
               </div>
               <div>

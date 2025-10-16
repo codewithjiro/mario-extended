@@ -34,6 +34,7 @@ import {
   HelpCircle,
   Settings,
   FileText,
+  Gamepad2,
 } from "lucide-react";
 import Image from "next/image";
 import { SignInButton, useUser } from "@clerk/nextjs";
@@ -75,7 +76,7 @@ export default function Home() {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-red-500 to-yellow-500 shadow-lg">
-              <Rocket className="h-6 w-6 text-white" />
+              <Gamepad2 className="h-6 w-6 text-white" />
             </div>
             <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-xl font-bold text-transparent">
               MarioX
@@ -600,7 +601,7 @@ export default function Home() {
               <CardHeader className="pb-4 text-center">
                 <div className="relative mx-auto mb-4 h-32 w-32">
                   <Image
-                    src="/team/nicole.jpg"
+                    src="/team/ashley.jpg"
                     alt="Nicole Ashley - Project Helper"
                     fill
                     className="rounded-full border-4 border-pink-500/50 object-cover transition-colors group-hover:border-pink-500"
