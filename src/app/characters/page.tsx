@@ -78,7 +78,6 @@ export default function CharactersPage() {
     setError(null);
     try {
       const res = await fetch("/api/characters", {
-        headers: { "x-api-key": "sk_live_BFhBmmPbic1u48_aWC_nj2djiiRxNGWL" },
       });
 
       if (!res.ok) {
@@ -112,7 +111,6 @@ export default function CharactersPage() {
         method,
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": "sk_live_BFhBmmPbic1u48_aWC_nj2djiiRxNGWL",
         },
         body: JSON.stringify(formData),
       });
@@ -152,9 +150,6 @@ export default function CharactersPage() {
     try {
       const res = await fetch(`/api/characters/${id}`, {
         method: "DELETE",
-        headers: {
-          "x-api-key": "sk_live_BFhBmmPbic1u48_aWC_nj2djiiRxNGWL",
-        },
       });
 
       if (!res.ok) {

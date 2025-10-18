@@ -74,9 +74,7 @@ export default function PowerupsPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/ping", {
-        headers: { "x-api-key": "sk_live_BFhBmmPbic1u48_aWC_nj2djiiRxNGWL" },
-      });
+      const res = await fetch("/api/powerups", {});
 
       if (!res.ok) {
         throw new Error(`Failed to load: ${res.status}`);
@@ -107,10 +105,7 @@ export default function PowerupsPage() {
 
       const res = await fetch(url, {
         method,
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "sk_live_BFhBmmPbic1u48_aWC_nj2djiiRxNGWL",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -148,12 +143,7 @@ export default function PowerupsPage() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`/api/powerups/${id}`, {
-        method: "DELETE",
-        headers: {
-          "x-api-key": "sk_live_BFhBmmPbic1u48_aWC_nj2djiiRxNGWL",
-        },
-      });
+      const res = await fetch(`/api/powerups/${id}`, { method: "DELETE" });
 
       if (!res.ok) {
         const result = await res.json();

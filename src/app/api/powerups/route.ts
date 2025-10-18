@@ -1,57 +1,33 @@
-import { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "~/server/db";
 import { powerups } from "~/server/db/schema";
-import { verifyKey } from "~/server/key";
 
-
-export async function GET(req: NextRequest) {
-  const apiKey = req.headers.get("x-api-key") ?? "";
-  const result = await verifyKey(apiKey);
-
-  if (!result.valid) {
-    return Response.json({ error: result.reason }, { status: 401 });
-  }
-
+// GET all powerups
+export async function GET() {
   try {
-    const allPowerups = await db.select().from(powerups);
-    return Response.json({ powerups: allPowerups }, { status: 200 });
+    const result = await db.select().from(powerups).orderBy(powerups.id);
+    return NextResponse.json({ powerups: result });
   } catch (error: any) {
-    console.error("Database error:", error);
-    return Response.json({ error: error.message }, { status: 500 });
+    console.error("Error loading powerups:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
-export async function POST(req: NextRequest) {
-  const apiKey = req.headers.get("x-api-key") ?? "";
-  const result = await verifyKey(apiKey);
-
-  if (!result.valid) {
-    return Response.json({ error: result.reason }, { status: 401 });
-  }
-
+// POST (add new powerup)
+export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, effect, rarity, description, imageUrl, type } = body;
-
-    if (!name) {
-      return Response.json({ error: "Name is required" }, { status: 400 });
-    }
-
-    const [newPowerup] = await db
-      .insert(powerups)
-      .values({
-        name,
-        effect: effect || "Unknown",
-        rarity: rarity || "Common",
-        description: description || "",
-        imageUrl: imageUrl || "",
-        type: type || "Power-up",
-      })
-      .returning();
-
-    return Response.json({ powerup: newPowerup }, { status: 201 });
+    await db.insert(powerups).values({
+      name: body.name,
+      effect: body.effect,
+      rarity: body.rarity,
+      description: body.description,
+      imageUrl: body.imageUrl,
+      type: body.type,
+    });
+    return NextResponse.json({ message: "Power-up added successfully!" });
   } catch (error: any) {
-    console.error("Create error:", error);
-    return Response.json({ error: error.message }, { status: 500 });
+    console.error("Error adding powerup:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

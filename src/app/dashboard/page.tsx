@@ -123,81 +123,79 @@ export default function DashboardPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl space-y-8">
-      {/* Header */}
-<motion.header
-  initial={{ y: -20, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.5 }}
-  className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 rounded-3xl border border-gray-700/50 bg-gray-800/40 p-6 backdrop-blur-2xl shadow-2xl"
->
-  {/* Left Section: Logo and Navigation */}
-  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-1">
-    {/* Logo */}
-    <div className="flex items-center gap-4">
-      <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-500 rounded-2xl blur-lg opacity-75"></div>
-        <div className="relative bg-gradient-to-r from-red-500 to-yellow-500 p-3 rounded-2xl shadow-2xl">
-          <Gamepad2 className="h-7 w-7 text-white" />
-        </div>
-      </div>
-      <div>
-        <h1 className="bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-3xl font-black text-transparent bg-size-200 animate-gradient">
-          MarioX
-        </h1>
-        <p className="mt-1 text-sm text-gray-300 font-medium">
-          API Power-Up Dashboard
-        </p>
-      </div>
-    </div>
+          {/* Header */}
+          <motion.header
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-start justify-between gap-4 rounded-3xl border border-gray-700/50 bg-gray-800/40 p-6 shadow-2xl backdrop-blur-2xl lg:flex-row lg:items-center"
+          >
+            {/* Left Section: Logo */}
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500 to-yellow-500 opacity-75 blur-lg"></div>
+                <div className="relative rounded-2xl bg-gradient-to-r from-red-500 to-yellow-500 p-3 shadow-2xl">
+                  <Gamepad2 className="h-7 w-7 text-white" />
+                </div>
+              </div>
+              <div>
+                <h1 className="bg-size-200 animate-gradient bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-3xl font-black text-transparent">
+                  MarioX
+                </h1>
+                <p className="mt-1 text-sm font-medium text-gray-300">
+                  API Power-Up Dashboard
+                </p>
+              </div>
+            </div>
 
-    {/* Navigation Buttons */}
-    <div className="flex items-center gap-2 ml-0 sm:ml-4">
-      <Link href="/characters">
-        <Button 
-          variant="outline"
-          className="flex items-center gap-2 border-red-500/30 bg-red-500/10 text-red-400 transition-all hover:scale-105 hover:bg-red-500/20 hover:shadow-lg hover:shadow-red-500/20 backdrop-blur-sm"
-        >
-          <Users className="h-4 w-4" />
-          <span className="hidden sm:inline">Characters</span>
-        </Button>
-      </Link>
+            {/* Right Section: Navigation + User */}
+            <div className="flex w-full items-center justify-end gap-2 lg:w-auto">
+              {/* Characters */}
+              <Link href="/characters">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 border-red-500/30 bg-red-500/10 text-red-400 backdrop-blur-sm transition-all hover:scale-105 hover:bg-red-500/20 hover:shadow-lg hover:shadow-red-500/20"
+                >
+                  <Users className="h-4 w-4" />
+                  <span className="hidden sm:inline">Characters</span>
+                </Button>
+              </Link>
 
-      <Link href="/powerups">
-        <Button 
-          variant="outline"
-          className="flex items-center gap-2 border-yellow-500/30 bg-yellow-500/10 text-yellow-400 transition-all hover:scale-105 hover:bg-yellow-500/20 hover:shadow-lg hover:shadow-yellow-500/20 backdrop-blur-sm"
-        >
-          <Rocket className="h-4 w-4" />
-          <span className="hidden sm:inline">Power-Ups</span>
-        </Button>
-      </Link>
-    </div>
-  </div>
+              {/* Power-Ups */}
+              <Link href="/powerups">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 border-yellow-500/30 bg-yellow-500/10 text-yellow-400 backdrop-blur-sm transition-all hover:scale-105 hover:bg-yellow-500/20 hover:shadow-lg hover:shadow-yellow-500/20"
+                >
+                  <Rocket className="h-4 w-4" />
+                  <span className="hidden sm:inline">Power-Ups</span>
+                </Button>
+              </Link>
 
-  {/* Right Section: Actions and User */}
-  <div className="flex items-center gap-4 w-full lg:w-auto justify-end">
-    <Link href="/docs">
-      <Button
-        variant="outline"
-        className="flex items-center gap-2 border-blue-500/30 bg-blue-500/10 text-blue-400 transition-all hover:scale-105 hover:bg-blue-500/20 hover:shadow-lg hover:shadow-blue-500/20 backdrop-blur-sm"
-        aria-label="View Documentation"
-      >
-        <BookOpen className="h-4 w-4" /> 
-        <span className="hidden sm:inline">Adventure Guide</span>
-      </Button>
-    </Link>
-    
-    <div className="rounded-2xl border border-gray-600/50 bg-gray-700/60 p-2 backdrop-blur-xl shadow-lg">
-      <UserButton
-        appearance={{
-          elements: {
-            avatarBox: "h-8 w-8 rounded-xl",
-          },
-        }}
-      />
-    </div>
-  </div>
-</motion.header>
+              {/* Adventure Guide */}
+              <Link href="/docs">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 border-blue-500/30 bg-blue-500/10 text-blue-400 backdrop-blur-sm transition-all hover:scale-105 hover:bg-blue-500/20 hover:shadow-lg hover:shadow-blue-500/20"
+                  aria-label="View Documentation"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  <span className="hidden sm:inline">Adventure Guide</span>
+                </Button>
+              </Link>
+
+              {/* User Button */}
+              <div className="rounded-2xl border border-gray-600/50 bg-gray-700/60 p-2 shadow-lg backdrop-blur-xl">
+                <UserButton
+                  appearance={{
+                    elements: {
+                      avatarBox: "h-8 w-8 rounded-xl",
+                    },
+                  }}
+                />
+              </div>
+            </div>
+          </motion.header>
 
           {/* Welcome Section */}
           <motion.div
@@ -247,15 +245,6 @@ export default function DashboardPage() {
                             {items.filter((i) => !i.revoked).length}
                           </div>
                           <div className="text-sm text-gray-400">Active</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 rounded-xl border border-gray-700 bg-gray-800/60 px-4 py-3 backdrop-blur-sm">
-                        <div className="rounded-lg bg-blue-500/20 p-2">
-                          <Trophy className="h-4 w-4 text-blue-400" />
-                        </div>
-                        <div>
-                          <div className="text-2xl font-bold text-white">∞</div>
-                          <div className="text-sm text-gray-400">Potential</div>
                         </div>
                       </div>
                     </div>
