@@ -25,21 +25,21 @@ export const apiKeys = createTable("api_keys", (d) => ({
   revoked: d.boolean("revoked").notNull().default(false),
 }));
 
-export const characters = createTable("characters", (d) => ({
+export const gameItems = createTable("game_items", (d) => ({
   id: d.serial("id").primaryKey(),
-  name: d.varchar("name", { length: 50 }).notNull(),
-  type: d.varchar("type", { length: 20 }).notNull(),
-  power: d.varchar("power", { length: 50 }).notNull(),
-  description: d.text("description"),
-  imageUrl: d.varchar("image_url", { length: 512 }),
-}));
-
-export const powerups = createTable("powerups", (d) => ({
-  id: d.serial("id").primaryKey(),
-  name: d.varchar("name", { length: 255 }).notNull(),
-  effect: d.varchar("effect", { length: 255 }),
+  name: d.varchar("name", { length: 100 }).notNull(),
+  category: d.varchar("category", { length: 50 }).notNull(), // e.g. "Character" or "Power-up"
+  type: d.varchar("type", { length: 50 }).default("Generic").notNull(),
+  power: d.varchar("power", { length: 100 }), // for characters
+  effect: d.varchar("effect", { length: 255 }), // for power-ups
   rarity: d.varchar("rarity", { length: 50 }).default("Common"),
   description: d.text("description"),
-  imageUrl: d.text("image_url"),
-  type: d.varchar("type", { length: 100 }).default("Power-up"),
+  imageUrl: d.varchar("image_url", { length: 512 }),
+  userId: d.varchar("user_id", { length: 64 }).notNull(),
+  createdAt: d
+    .timestamp({ withTimezone: true })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
+  fileName: d.varchar({ length: 256 }),
 }));

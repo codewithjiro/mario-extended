@@ -1,8 +1,8 @@
 import { NextRequest } from "next/server";
 import { ilike } from "drizzle-orm";
 import { db } from "~/server/db";
-import { characters, powerups } from "~/server/db/schema";
 import { verifyKey } from "~/server/key";
+import { gameItems } from "~/server/db/schema";
 
 export async function POST(req: NextRequest) {
   const apiKey = req.headers.get("x-api-key") ?? "";
@@ -22,19 +22,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const foundCharacters = await db
+    const foundItems = await db
       .select()
-      .from(characters)
-      .where(ilike(characters.name, `%${body.postBody}%`));
+      .from(gameItems)
+      .where(ilike(gameItems.name, `%${body.postBody}%`));
 
-    const foundPowerups = await db
-      .select()
-      .from(powerups)
-      .where(ilike(powerups.name, `%${body.postBody}%`));
-
-    if (foundCharacters.length === 0 && foundPowerups.length === 0) {
+    if (foundItems.length === 0) {
       return Response.json(
-        { error: "No results found in either table." },
+        { error: "No results found." },
         { status: 404 },
       );
     }
@@ -44,8 +39,7 @@ export async function POST(req: NextRequest) {
         ok: true,
         message: "Search completed successfully.",
         keyId: result.keyId,
-        characters: foundCharacters,
-        powerups: foundPowerups,
+        items: foundItems,
       },
       { status: 200 },
     );

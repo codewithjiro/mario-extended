@@ -160,58 +160,6 @@ export default function DocsPage() {
             </div>
           </motion.header>
 
-          {/* Enhanced Stats Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="grid grid-cols-3 gap-4 lg:grid-cols-3"
-          >
-            {[
-              {
-                label: "Endpoints",
-                value: "12+",
-                icon: Database,
-                color: "from-blue-500 to-cyan-500",
-              },
-              {
-                label: "Uptime",
-                value: "99.9%",
-                icon: Activity,
-                color: "from-green-500 to-emerald-500",
-              },
-              {
-                label: "Rate Limit",
-                value: "300/min",
-                icon: Zap,
-                color: "from-yellow-500 to-orange-500",
-              },
-            ].map((stat, index) => (
-              <Card
-                key={stat.label}
-                className="border-0 bg-gradient-to-br from-gray-800/60 to-gray-900/60 shadow-2xl backdrop-blur-2xl"
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-400">
-                        {stat.label}
-                      </p>
-                      <p className="text-2xl font-bold text-white">
-                        {stat.value}
-                      </p>
-                    </div>
-                    <div
-                      className={`rounded-xl bg-gradient-to-r ${stat.color} p-2 shadow-lg`}
-                    >
-                      <stat.icon className="h-5 w-5 text-white" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </motion.div>
-
           {/* Enhanced Documentation Section */}
           <div className="grid grid-cols-1 gap-8 xl:grid-cols-3">
             {/* Main Documentation */}

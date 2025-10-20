@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { db } from "~/server/db";
-import { characters, powerups } from "~/server/db/schema";
+import { gameItems } from "~/server/db/schema";
 import { verifyKey } from "~/server/key";
 
 export async function GET(req: NextRequest) {
@@ -11,16 +11,14 @@ export async function GET(req: NextRequest) {
     return Response.json({ error: result.reason }, { status: 401 });
   }
 
-  const allCharacters = await db.select().from(characters);
-  const allPowerups = await db.select().from(powerups);
+  const allItems = await db.select().from(gameItems);
 
   return Response.json(
     {
       ok: true,
       message: "API connected successfully!",
       keyId: result.keyId,
-      characters: allCharacters,
-      powerups: allPowerups,
+      items: allItems,
     },
     { status: 200 },
   );

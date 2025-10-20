@@ -145,18 +145,8 @@ export default function Home() {
                 size="lg"
                 className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black hover:from-yellow-600 hover:to-yellow-700"
               >
-                <a href="#pricing" className="flex items-center space-x-2">
+                <a href="/pricing" className="flex items-center space-x-2">
                   <span>Explore Pricing</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black hover:from-yellow-600 hover:to-yellow-700"
-              >
-                <a href="/sign-in" className="flex items-center space-x-2">
-                  <span>Admin Dashboard</span>
                   <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>

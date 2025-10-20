@@ -157,18 +157,7 @@ export default function DashboardPage() {
                   className="flex items-center gap-2 border-red-500/30 bg-red-500/10 text-red-400 backdrop-blur-sm transition-all hover:scale-105 hover:bg-red-500/20 hover:shadow-lg hover:shadow-red-500/20"
                 >
                   <Users className="h-4 w-4" />
-                  <span className="hidden sm:inline">Characters</span>
-                </Button>
-              </Link>
-
-              {/* Power-Ups */}
-              <Link href="/powerups">
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2 border-yellow-500/30 bg-yellow-500/10 text-yellow-400 backdrop-blur-sm transition-all hover:scale-105 hover:bg-yellow-500/20 hover:shadow-lg hover:shadow-yellow-500/20"
-                >
-                  <Rocket className="h-4 w-4" />
-                  <span className="hidden sm:inline">Power-Ups</span>
+                  <span className="hidden sm:inline">Items</span>
                 </Button>
               </Link>
 
@@ -197,83 +186,90 @@ export default function DashboardPage() {
             </div>
           </motion.header>
 
-          {/* Welcome Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card className="overflow-hidden border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 shadow-2xl backdrop-blur-xl">
+            <Card className="overflow-hidden rounded-3xl border-0 bg-gradient-to-br from-gray-900/80 to-gray-800/80 shadow-2xl backdrop-blur-xl">
               <CardContent className="p-0">
-                <div className="flex flex-col items-start gap-8 p-8 md:flex-row md:items-center">
+                <div className="flex flex-col gap-8 p-8 md:flex-row md:items-center md:justify-between">
+                  {/* Left Content */}
                   <div className="flex-1 space-y-6">
-                    <div>
-                      <Badge className="mb-3 border-0 bg-gradient-to-r from-red-500 to-yellow-500 text-white">
-                        <Sparkles className="mr-1 h-3 w-3" />
-                        Welcome Back, Hero!
-                      </Badge>
-                      <h2 className="text-3xl font-black text-white">
-                        Ready for your next{" "}
-                        <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">
-                          Adventure, {user?.firstName || "Mario"}!
-                        </span>
-                      </h2>
-                      <p className="mt-3 text-lg text-gray-300">
-                        Manage your Power-Up keys and conquer the API world with
-                        MarioX magic!
-                      </p>
-                    </div>
+                    <Badge className="inline-flex items-center gap-1 rounded-full border-0 bg-gradient-to-r from-red-500 to-yellow-500 px-3 py-1 text-white shadow-lg">
+                      <Sparkles className="h-4 w-4" />
+                      Welcome Back, Hero!
+                    </Badge>
 
-                    <div className="flex gap-4">
-                      <div className="flex items-center gap-3 rounded-xl border border-gray-700 bg-gray-800/60 px-4 py-3 backdrop-blur-sm">
+                    <h2 className="text-3xl leading-tight font-extrabold text-white md:text-4xl">
+                      Ready for your next{" "}
+                      <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">
+                        Adventure, {user?.firstName || "Mario"}!
+                      </span>
+                    </h2>
+
+                    <p className="text-lg text-gray-300 md:text-base">
+                      Manage your Power-Up keys and conquer the API world with
+                      MarioX magic!
+                    </p>
+
+                    {/* Stats Cards */}
+                    <div className="flex flex-wrap gap-4">
+                      {/* Total Power-Ups */}
+                      <div className="flex items-center gap-3 rounded-2xl border border-gray-700 bg-gray-800/50 px-5 py-4 shadow-md backdrop-blur-sm transition-transform duration-300 hover:scale-105">
                         <div className="rounded-lg bg-red-500/20 p-2">
-                          <Key className="h-4 w-4 text-red-400" />
+                          <Key className="h-5 w-5 text-red-400" />
                         </div>
                         <div>
                           <div className="text-2xl font-bold text-white">
                             {items.length}
                           </div>
-                          <div className="text-sm text-gray-400">Power-Ups</div>
+                          <div className="text-sm tracking-wider text-gray-400 uppercase">
+                            Power-Ups
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 rounded-xl border border-gray-700 bg-gray-800/60 px-4 py-3 backdrop-blur-sm">
+
+                      {/* Active Power-Ups */}
+                      <div className="flex items-center gap-3 rounded-2xl border border-gray-700 bg-gray-800/50 px-5 py-4 shadow-md backdrop-blur-sm transition-transform duration-300 hover:scale-105">
                         <div className="rounded-lg bg-yellow-500/20 p-2">
-                          <Zap className="h-4 w-4 text-yellow-400" />
+                          <Zap className="h-5 w-5 text-yellow-400" />
                         </div>
                         <div>
                           <div className="text-2xl font-bold text-white">
                             {items.filter((i) => !i.revoked).length}
                           </div>
-                          <div className="text-sm text-gray-400">Active</div>
+                          <div className="text-sm tracking-wider text-gray-400 uppercase">
+                            Active
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
+                  {/* Right Content - Image */}
                   <div className="relative flex items-center justify-center">
                     {/* Gradient Glow */}
-                    <div className="absolute -inset-8 z-0 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 opacity-30 blur-2xl"></div>
+                    <div className="absolute -inset-6 z-0 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 opacity-30 blur-3xl"></div>
 
-                    {/* Mario GIF Container */}
-                    <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl ring-2 ring-yellow-500/30">
+                    <div className="relative z-10 overflow-hidden rounded-3xl shadow-2xl ring-2 ring-yellow-500/30 transition-transform duration-500 hover:scale-105">
                       <img
                         src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyOHE4NHFraGFxOXNrbDl1ejAydWYxOG5obzg5MjV6bmRoOHk1OG01NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OZ1VAPExqf1G40bBAt/giphy.gif"
                         alt="Mario Adventure"
-                        className="h-48 w-48 object-cover transition-transform duration-500 hover:scale-110"
+                        className="h-48 w-48 object-cover md:h-56 md:w-56"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-700 bg-gray-800/60 p-6 backdrop-blur-sm">
-                  <div className="flex items-center gap-3">
-                    <Shield className="h-5 w-5 text-yellow-500" />
-                    <p className="text-sm text-gray-300">
-                      <strong className="text-yellow-400">Pro Tip:</strong>{" "}
-                      Guard your Power-Ups like stars! Rotate them regularly and
-                      revoke when not in use.
-                    </p>
-                  </div>
+                {/* Pro Tip */}
+                <div className="mt-6 flex items-center gap-3 rounded-b-3xl border-t border-gray-700 bg-gray-800/50 p-6 backdrop-blur-sm">
+                  <Shield className="h-5 w-5 text-yellow-500" />
+                  <p className="text-sm text-gray-300">
+                    <strong className="text-yellow-400">Pro Tip:</strong> Guard
+                    your Power-Ups like stars! Rotate them regularly and revoke
+                    when not in use.
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -405,121 +401,159 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 shadow-2xl backdrop-blur-xl">
-              <CardHeader className="border-b border-gray-700 pb-6">
+            <Card className="overflow-hidden rounded-3xl border-0 bg-gradient-to-br from-gray-900/90 to-gray-800/70 shadow-2xl backdrop-blur-xl">
+              {/* Enhanced Header with Glass Morphism */}
+              <CardHeader className="border-b border-gray-700/50 bg-gradient-to-r from-gray-800/40 to-gray-900/20 pb-6">
                 <div className="flex items-center justify-between">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 p-2">
-                        <Gamepad2 className="h-5 w-5 text-white" />
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-4">
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-75 blur-md"></div>
+                        <div className="relative rounded-2xl bg-gradient-to-r from-blue-600 to-purple-700 p-3 shadow-lg">
+                          <Gamepad2 className="h-6 w-6 text-white" />
+                        </div>
                       </div>
                       <div>
-                        <CardTitle className="text-xl font-bold text-white">
-                          Your Power-Up Collection
+                        <CardTitle className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-2xl font-bold text-transparent">
+                          Power-Up Collection
                         </CardTitle>
-                        <CardDescription className="text-gray-400">
+                        <CardDescription className="mt-1 text-sm text-gray-400">
                           Manage and monitor all your active API keys
                         </CardDescription>
                       </div>
                     </div>
                   </div>
-                  <Badge
-                    variant="outline"
-                    className="border-green-500/50 bg-green-500/10 text-green-400 backdrop-blur-sm"
-                  >
-                    <Zap className="mr-1 h-3 w-3" />
-                    {items.filter((i) => !i.revoked).length} Active
+                  <Badge className="rounded-full border border-green-500/30 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-4 py-2 text-green-400 backdrop-blur-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 animate-pulse rounded-full bg-green-400"></div>
+                      <span className="font-semibold">
+                        {items.filter((i) => !i.revoked).length} Active
+                      </span>
+                    </div>
                   </Badge>
                 </div>
               </CardHeader>
 
-              <CardContent className="p-6">
+              <CardContent className="p-8">
                 <AnimatePresence mode="wait">
                   {items.length > 0 ? (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+                      className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
                     >
-                      {items.map((row) => (
+                      {items.map((row, index) => (
                         <motion.div
                           key={row.id}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
                           exit={{ opacity: 0, scale: 0.9 }}
-                          whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                          className="group flex flex-col justify-between rounded-2xl border border-gray-700 bg-gray-800/60 p-6 shadow-lg backdrop-blur-sm transition-all hover:shadow-2xl hover:shadow-yellow-500/10"
+                          whileHover={{
+                            y: -4,
+                            scale: 1.02,
+                            transition: { duration: 0.2 },
+                          }}
+                          className="group relative"
                         >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <h3 className="text-lg font-bold text-white">
-                                {row.name}
-                              </h3>
-                              <Badge
-                                className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                  row.revoked
-                                    ? "border-red-500/30 bg-red-500/20 text-red-400"
-                                    : "border-green-500/30 bg-green-500/20 text-green-400"
-                                } border backdrop-blur-sm`}
+                          {/* Card Background Effect */}
+                          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"></div>
+
+                          <div className="relative flex h-full flex-col justify-between rounded-2xl border border-gray-700/50 bg-gray-800/40 p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 group-hover:border-gray-600/70 group-hover:shadow-2xl group-hover:shadow-blue-500/5">
+                            <div className="space-y-5">
+                              {/* Header with Status */}
+                              <div className="flex items-start justify-between">
+                                <div>
+                                  <h3 className="mb-1 text-lg font-bold text-white">
+                                    {row.name}
+                                  </h3>
+                                  <div className="flex items-center gap-2">
+                                    <div
+                                      className={`h-2 w-2 rounded-full ${
+                                        row.revoked
+                                          ? "bg-red-400"
+                                          : "animate-pulse bg-green-400"
+                                      }`}
+                                    ></div>
+                                    <span className="text-xs text-gray-400">
+                                      {row.revoked ? "Revoked" : "Active"}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div
+                                  className={`rounded-full px-3 py-1 text-xs font-medium ${
+                                    row.revoked
+                                      ? "border border-red-500/30 bg-red-500/20 text-red-300"
+                                      : "border border-green-500/30 bg-green-500/20 text-green-300"
+                                  }`}
+                                >
+                                  {row.revoked ? "Revoked" : "Active"}
+                                </div>
+                              </div>
+
+                              {/* API Key Display */}
+                              <div className="rounded-xl border border-gray-600/50 bg-gray-700/30 p-4 backdrop-blur-sm transition-colors group-hover:border-gray-500/70">
+                                <code className="font-mono text-sm break-all text-gray-200 select-all">
+                                  {row.masked}
+                                </code>
+                              </div>
+
+                              {/* Metadata */}
+                              <div className="flex items-center gap-3 text-sm text-gray-400">
+                                <div className="flex items-center gap-2 rounded-lg bg-gray-700/50 px-3 py-2">
+                                  <Calendar className="h-4 w-4" />
+                                  <span>
+                                    {new Date(row.createdAt).toLocaleDateString(
+                                      "en-US",
+                                      {
+                                        year: "numeric",
+                                        month: "short",
+                                        day: "numeric",
+                                      },
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Action Button */}
+                            <div className="mt-6 flex justify-end">
+                              <Button
+                                variant="destructive"
+                                size="sm"
+                                disabled={row.revoked}
+                                onClick={() => revokeKey(row.id)}
+                                className="gap-2 rounded-xl bg-gradient-to-r from-red-500 to-red-600 font-semibold shadow-lg shadow-red-500/20 transition-all duration-200 hover:from-red-600 hover:to-red-700 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-30"
                               >
-                                {row.revoked ? "Revoked" : "Active"}
-                              </Badge>
+                                <XCircle className="h-4 w-4" />
+                                Revoke Power
+                              </Button>
                             </div>
-
-                            <div className="rounded-xl border border-gray-600 bg-gray-700/50 p-4 backdrop-blur-sm">
-                              <code className="font-mono text-sm break-all text-gray-200">
-                                {row.masked}
-                              </code>
-                            </div>
-
-                            <div className="flex items-center gap-2 text-sm text-gray-400">
-                              <Calendar className="h-4 w-4" />
-                              <span>
-                                Created:{" "}
-                                {new Date(row.createdAt).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric",
-                                  },
-                                )}
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 flex justify-end">
-                            <Button
-                              variant="destructive"
-                              size="sm"
-                              disabled={row.revoked}
-                              onClick={() => revokeKey(row.id)}
-                              className="gap-2 bg-gradient-to-r from-red-500 to-red-600 transition-all hover:from-red-600 hover:to-red-700 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              <XCircle className="h-4 w-4" />
-                              Revoke Power
-                            </Button>
                           </div>
                         </motion.div>
                       ))}
                     </motion.div>
                   ) : (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="flex flex-col items-center justify-center py-16 text-center"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="flex flex-col items-center justify-center py-20 text-center"
                     >
-                      <div className="rounded-2xl border border-gray-700 bg-gray-800/60 p-6 backdrop-blur-sm">
-                        <Rocket className="h-12 w-12 text-gray-500" />
+                      {/* Animated Empty State */}
+                      <div className="relative mb-6">
+                        <div className="absolute inset-0 animate-pulse rounded-3xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-20 blur-xl"></div>
+                        <div className="relative rounded-2xl border border-gray-700/50 bg-gray-800/40 p-8 backdrop-blur-xl">
+                          <Rocket className="h-16 w-16 text-gray-500" />
+                        </div>
                       </div>
-                      <h3 className="mt-6 text-xl font-bold text-white">
+                      <h3 className="mb-3 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-2xl font-bold text-transparent">
                         No Power-Ups Yet!
                       </h3>
-                      <p className="mt-3 max-w-sm text-gray-400">
-                        Start your adventure by creating your first Power-Up key
-                        to unlock the Mario universe API.
+                      <p className="max-w-md text-lg leading-relaxed text-gray-400">
+                        Begin your journey by creating your first Power-Up key
+                        to unlock the incredible Mario universe API.
                       </p>
                     </motion.div>
                   )}
