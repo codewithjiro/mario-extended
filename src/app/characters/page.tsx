@@ -265,7 +265,6 @@ export default function GameItemsPage() {
       toast.error(error.message, { id: "save" });
     }
   }
-  
 
   async function handleUpdate() {
     if (!editingItem) return;
@@ -459,10 +458,10 @@ export default function GameItemsPage() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative flex items-center justify-between overflow-hidden rounded-3xl border border-red-500/20 bg-gray-800/40 p-6 shadow-2xl backdrop-blur-2xl"
+            className="relative flex items-center justify-between overflow-hidden rounded-3xl border border-gray-700/50 bg-gray-800/40 p-6 shadow-2xl backdrop-blur-2xl"
           >
             {/* Header Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-yellow-500/5 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-700/50 via-gray-800/40 to-transparent"></div>
 
             <div className="relative">
               <div className="mb-2 flex items-center gap-3">
@@ -540,7 +539,7 @@ export default function GameItemsPage() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => handleCardClick(item)}
-                  className="transform cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-1"
+                  className="transform cursor-pointer transition-all duration-300 hover:scale-105"
                 >
                   <Card className="group relative overflow-hidden border border-gray-700/50 bg-gradient-to-b from-gray-800/80 to-gray-900/80 shadow-2xl backdrop-blur-xl">
                     {/* Card Glow Effect */}
