@@ -346,7 +346,7 @@ export default function GameItemsPage() {
     if (!editingItem) return;
 
     try {
-      toast.loading("🔄 Updating item...", { id: "update" });
+      toast.success("Updating item...", { id: "update" });
       clearError();
 
       let finalImageUrl = formData.imageUrl || editingItem.imageUrl;
@@ -392,7 +392,7 @@ export default function GameItemsPage() {
         );
       }
 
-      toast.success("✅ Item updated successfully!", { id: "update" });
+      toast.success("Item updated successfully!", { id: "update" });
       setOpen(false);
       setViewOpen(false);
       resetForm();
@@ -412,7 +412,7 @@ export default function GameItemsPage() {
       return;
 
     try {
-      toast.loading("🗑️ Deleting item...", { id: "delete" });
+      toast.success("Deleting item...", { id: "delete" });
       clearError();
 
       const res = await fetch(`/api/characters/${item.id}`, {
@@ -426,7 +426,7 @@ export default function GameItemsPage() {
         );
       }
 
-      toast.success("✅ Item deleted successfully!", { id: "delete" });
+      toast.success("Item deleted successfully!", { id: "delete" });
       setViewOpen(false);
       setSelectedItem(null);
       await loadItems();
@@ -463,12 +463,12 @@ export default function GameItemsPage() {
   // Handle image selection with validation
   function handleImageSelect(file: File, type: "create" | "edit") {
     if (!file.type.startsWith("image/")) {
-      toast.error("❌ Please select a valid image file (PNG, JPG, WEBP).");
+      toast.error("Please select a valid image file (PNG, JPG, WEBP).");
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      toast.error("❌ Image size must be less than 5MB.");
+      toast.error("Image size must be less than 5MB.");
       return;
     }
 
