@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 import { Crown, Star, Zap, Sparkles } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 
@@ -15,7 +22,7 @@ export default function PricingSection() {
       requests: "60 requests / minute",
       features: [
         "Basic API Access",
-        "Community Support", 
+        "Community Support",
         "Standard Rate Limits",
         "Public Data Only",
         "Basic Documentation",
@@ -24,7 +31,7 @@ export default function PricingSection() {
       popular: false,
       icon: Star,
       gradient: "from-green-500 to-emerald-500",
-      badge: "Starter"
+      badge: "Starter",
     },
     {
       name: "Fire Flower",
@@ -34,7 +41,7 @@ export default function PricingSection() {
       features: [
         "All Mushroom Features",
         "Priority Support",
-        "Webhook Support", 
+        "Webhook Support",
         "Advanced Analytics",
         "Early Access Features",
         "Extended Rate Limits",
@@ -43,7 +50,7 @@ export default function PricingSection() {
       popular: true,
       icon: Zap,
       gradient: "from-red-500 to-orange-500",
-      badge: "Most Popular"
+      badge: "Most Popular",
     },
     {
       name: "Starman",
@@ -55,7 +62,7 @@ export default function PricingSection() {
         "Dedicated Support",
         "Custom Integrations",
         "SLA Guarantee",
-        "Custom Data Models", 
+        "Custom Data Models",
         "White-label Options",
         "API Customization",
       ],
@@ -63,7 +70,7 @@ export default function PricingSection() {
       popular: false,
       icon: Crown,
       gradient: "from-yellow-500 to-yellow-300",
-      badge: "Enterprise"
+      badge: "Enterprise",
     },
   ];
 
@@ -95,7 +102,7 @@ export default function PricingSection() {
                 Power-Up Your Adventure
               </Badge>
             </motion.div>
-            
+
             <motion.h2
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -106,14 +113,15 @@ export default function PricingSection() {
                 Choose Your Power Level
               </span>
             </motion.h2>
-            
+
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
               className="mx-auto max-w-2xl text-xl text-gray-300"
             >
-              Start your quest for free and level up as you grow. No hidden blocks, just pure power!
+              Start your quest for free and level up as you grow. No hidden
+              blocks, just pure power!
             </motion.p>
           </div>
 
@@ -127,9 +135,11 @@ export default function PricingSection() {
                 transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
-                <Card className={`relative h-full overflow-hidden border-0 bg-gradient-to-br from-gray-800/60 to-gray-900/80 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
-                  plan.popular ? "ring-2 ring-yellow-500/50" : ""
-                }`}>
+                <Card
+                  className={`relative h-full overflow-hidden border-0 bg-gradient-to-br from-gray-800/60 to-gray-900/80 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
+                    plan.popular ? "ring-2 ring-yellow-500/50" : ""
+                  }`}
+                >
                   {/* Popular Badge */}
                   {plan.popular && (
                     <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 transform">
@@ -141,14 +151,20 @@ export default function PricingSection() {
                   )}
 
                   {/* Background Glow */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} opacity-5`}></div>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} opacity-5`}
+                  ></div>
 
                   <CardHeader className="relative z-10 pb-6 text-center">
                     {/* Icon */}
                     <div className="mb-4 flex justify-center">
                       <div className="relative">
-                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${plan.gradient} opacity-75 blur-lg`}></div>
-                        <div className={`relative rounded-2xl bg-gradient-to-r ${plan.gradient} p-4 shadow-2xl`}>
+                        <div
+                          className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${plan.gradient} opacity-75 blur-lg`}
+                        ></div>
+                        <div
+                          className={`relative rounded-2xl bg-gradient-to-r ${plan.gradient} p-4 shadow-2xl`}
+                        >
                           <plan.icon className="h-6 w-6 text-white" />
                         </div>
                       </div>
@@ -186,7 +202,10 @@ export default function PricingSection() {
                           key={featureIndex}
                           initial={{ x: -20, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
-                          transition={{ duration: 0.3, delay: 1.1 + featureIndex * 0.05 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: 1.1 + featureIndex * 0.05,
+                          }}
                           className="flex items-center space-x-3 text-gray-300"
                         >
                           <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/20">
@@ -227,8 +246,11 @@ export default function PricingSection() {
             className="mt-12 text-center"
           >
             <p className="text-gray-400">
-              All plans include secure access, regular updates, and our legendary support.{" "}
-              <span className="text-yellow-400">No credit card required to start!</span>
+              All plans include secure access, regular updates, and our
+              legendary support.{" "}
+              <span className="text-yellow-400">
+                No credit card required to start!
+              </span>
             </p>
           </motion.div>
         </div>

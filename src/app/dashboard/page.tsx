@@ -157,7 +157,7 @@ export default function DashboardPage() {
                   className="flex items-center gap-2 border-red-500/30 bg-red-500/10 text-red-400 backdrop-blur-sm transition-all hover:scale-105 hover:bg-red-500/20 hover:shadow-lg hover:shadow-red-500/20"
                 >
                   <Users className="h-4 w-4" />
-                  <span className="hidden sm:inline">Items</span>
+                  <span className="hidden sm:inline">Item Center</span>
                 </Button>
               </Link>
 

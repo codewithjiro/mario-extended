@@ -4,7 +4,10 @@ import { db } from "~/server/db";
 import { gameItems } from "~/server/db/schema";
 
 // ✅ UPDATE game item
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(
+  req: Request,
+  { params }: { params: { id: string } },
+) {
   try {
     const body = await req.json();
     const {
@@ -19,10 +22,19 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     } = body;
 
     // Basic validation
-    if (!name && !category && !type && !power && !effect && !rarity && !description && !imageUrl) {
+    if (
+      !name &&
+      !category &&
+      !type &&
+      !power &&
+      !effect &&
+      !rarity &&
+      !description &&
+      !imageUrl
+    ) {
       return NextResponse.json(
         { error: "No fields provided for update" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -49,7 +61,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 // ✅ DELETE game item
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+  _: Request,
+  { params }: { params: { id: string } },
+) {
   try {
     await db.delete(gameItems).where(eq(gameItems.id, Number(params.id)));
     return NextResponse.json({ message: "Game item deleted successfully" });

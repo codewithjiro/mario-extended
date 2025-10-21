@@ -203,14 +203,14 @@ export default function GameItemsPage() {
 
   const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onUploadBegin: () => {
-      toast.info("🔄 Uploading image...", { id: "upload" });
+      toast.success("Uploading image...", { id: "upload" });
     },
     onUploadError: (error) => {
-      toast.error(`❌ Upload failed: ${error.message}`, { id: "upload" });
+      toast.error(`Upload failed: ${error.message}`, { id: "upload" });
       setError(`Image upload failed: ${error.message}`);
     },
     onClientUploadComplete: () => {
-      toast.success("✅ Image uploaded successfully!", { id: "upload" });
+      toast.success("Image uploaded successfully!", { id: "upload" });
     },
   });
 
@@ -232,7 +232,9 @@ export default function GameItemsPage() {
     try {
       const res = await fetch("/api/characters");
       if (!res.ok) {
-        throw new Error(`Failed to load items: ${res.status} ${res.statusText}`);
+        throw new Error(
+          `Failed to load items: ${res.status} ${res.statusText}`,
+        );
       }
       const data = await res.json();
       setGameItems(data.items || []);
@@ -284,7 +286,7 @@ export default function GameItemsPage() {
     }
 
     try {
-      toast.loading("🛠️ Creating item...", { id: "save" });
+      toast.success("🛠️ Creating item...", { id: "save" });
       clearError();
 
       let finalImageUrl = formData.imageUrl;
@@ -325,7 +327,9 @@ export default function GameItemsPage() {
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP ${res.status}: ${res.statusText}`);
+        throw new Error(
+          errorData.error || `HTTP ${res.status}: ${res.statusText}`,
+        );
       }
 
       toast.success("🎉 Item created successfully!", { id: "save" });
@@ -383,7 +387,9 @@ export default function GameItemsPage() {
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP ${res.status}: ${res.statusText}`);
+        throw new Error(
+          errorData.error || `HTTP ${res.status}: ${res.statusText}`,
+        );
       }
 
       toast.success("✅ Item updated successfully!", { id: "update" });
@@ -398,7 +404,12 @@ export default function GameItemsPage() {
 
   // Handle delete with enhanced error handling
   const handleDelete = async (item: GameItem) => {
-    if (!confirm(`🗑️ Are you sure you want to delete "${item.name}"? This action cannot be undone.`)) return;
+    if (
+      !confirm(
+        `🗑️ Are you sure you want to delete "${item.name}"? This action cannot be undone.`,
+      )
+    )
+      return;
 
     try {
       toast.loading("🗑️ Deleting item...", { id: "delete" });
@@ -410,7 +421,9 @@ export default function GameItemsPage() {
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP ${res.status}: ${res.statusText}`);
+        throw new Error(
+          errorData.error || `HTTP ${res.status}: ${res.statusText}`,
+        );
       }
 
       toast.success("✅ Item deleted successfully!", { id: "delete" });
@@ -528,15 +541,20 @@ export default function GameItemsPage() {
 
   // Enhanced filtering with multiple criteria
   const filteredItems = gameItems.filter((item) => {
-    const matchesSearch = filters.search === "" || 
+    const matchesSearch =
+      filters.search === "" ||
       [item.name, item.category, item.type, item.rarity, item.description]
         .join(" ")
         .toLowerCase()
         .includes(filters.search.toLowerCase());
 
-    const matchesCategory = filters.category === "All Categories" || item.category === filters.category;
-    const matchesType = filters.type === "All Types" || item.type === filters.type;
-    const matchesRarity = filters.rarity === "All Rarities" || item.rarity === filters.rarity;
+    const matchesCategory =
+      filters.category === "All Categories" ||
+      item.category === filters.category;
+    const matchesType =
+      filters.type === "All Types" || item.type === filters.type;
+    const matchesRarity =
+      filters.rarity === "All Rarities" || item.rarity === filters.rarity;
 
     return matchesSearch && matchesCategory && matchesType && matchesRarity;
   });
@@ -659,11 +677,13 @@ export default function GameItemsPage() {
                 <Input
                   placeholder="Search power-ups, weapons, items..."
                   value={filters.search}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                  onChange={(e) =>
+                    setFilters({ ...filters, search: e.target.value })
+                  }
                   className="border-red-500/30 bg-gray-800/60 pl-10 text-white placeholder-gray-400 backdrop-blur-sm focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30"
                 />
               </div>
-              
+
               {/* Filter Toggle */}
               <Button
                 variant="outline"
@@ -686,7 +706,9 @@ export default function GameItemsPage() {
                 disabled={loading}
                 className="border-blue-500/30 bg-blue-500/10 text-blue-400 backdrop-blur-sm hover:bg-blue-500/20"
               >
-                <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+                <RefreshCw
+                  className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
+                />
               </Button>
 
               <Badge
@@ -708,10 +730,14 @@ export default function GameItemsPage() {
                 >
                   {/* Category Filter */}
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-blue-300">Category</Label>
+                    <Label className="text-sm font-medium text-blue-300">
+                      Category
+                    </Label>
                     <Select
                       value={filters.category}
-                      onValueChange={(value) => setFilters({ ...filters, category: value })}
+                      onValueChange={(value) =>
+                        setFilters({ ...filters, category: value })
+                      }
                     >
                       <SelectTrigger className="border-blue-500/30 bg-gray-800/60 text-white">
                         <SelectValue />
@@ -728,10 +754,14 @@ export default function GameItemsPage() {
 
                   {/* Type Filter */}
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-yellow-300">Type</Label>
+                    <Label className="text-sm font-medium text-yellow-300">
+                      Type
+                    </Label>
                     <Select
                       value={filters.type}
-                      onValueChange={(value) => setFilters({ ...filters, type: value })}
+                      onValueChange={(value) =>
+                        setFilters({ ...filters, type: value })
+                      }
                     >
                       <SelectTrigger className="border-yellow-500/30 bg-gray-800/60 text-white">
                         <SelectValue />
@@ -748,10 +778,14 @@ export default function GameItemsPage() {
 
                   {/* Rarity Filter */}
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-purple-300">Rarity</Label>
+                    <Label className="text-sm font-medium text-purple-300">
+                      Rarity
+                    </Label>
                     <Select
                       value={filters.rarity}
-                      onValueChange={(value) => setFilters({ ...filters, rarity: value })}
+                      onValueChange={(value) =>
+                        setFilters({ ...filters, rarity: value })
+                      }
                     >
                       <SelectTrigger className="border-purple-500/30 bg-gray-800/60 text-white">
                         <SelectValue />
@@ -789,8 +823,10 @@ export default function GameItemsPage() {
               animate={{ opacity: 1 }}
               className="flex flex-col items-center justify-center py-16"
             >
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
-              <p className="mt-4 text-gray-400">Loading your legendary items...</p>
+              <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-yellow-500"></div>
+              <p className="mt-4 text-gray-400">
+                Loading your legendary items...
+              </p>
             </motion.div>
           )}
 
@@ -876,7 +912,9 @@ export default function GameItemsPage() {
                   >
                     <div className="rounded-2xl border border-gray-700/50 bg-gray-800/40 p-8 backdrop-blur-xl">
                       <Shield className="mx-auto h-16 w-16 text-gray-500" />
-                      <h3 className="mt-4 text-xl font-bold text-white">No Items Found</h3>
+                      <h3 className="mt-4 text-xl font-bold text-white">
+                        No Items Found
+                      </h3>
                       <p className="mt-2 text-gray-400">
                         {getActiveFilterCount() > 0
                           ? "Try adjusting your filters to see more results."
@@ -1021,7 +1059,9 @@ export default function GameItemsPage() {
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent className="border-blue-500/30 bg-gray-800 text-white">
-                              {CATEGORIES.filter(cat => cat !== "All Categories").map((category) => (
+                              {CATEGORIES.filter(
+                                (cat) => cat !== "All Categories",
+                              ).map((category) => (
                                 <SelectItem key={category} value={category}>
                                   {category}
                                 </SelectItem>
@@ -1044,11 +1084,13 @@ export default function GameItemsPage() {
                               <SelectValue placeholder="Select type" />
                             </SelectTrigger>
                             <SelectContent className="border-yellow-500/30 bg-gray-800 text-white">
-                              {TYPES.filter(type => type !== "All Types").map((type) => (
-                                <SelectItem key={type} value={type}>
-                                  {type}
-                                </SelectItem>
-                              ))}
+                              {TYPES.filter((type) => type !== "All Types").map(
+                                (type) => (
+                                  <SelectItem key={type} value={type}>
+                                    {type}
+                                  </SelectItem>
+                                ),
+                              )}
                             </SelectContent>
                           </Select>
                         </div>
@@ -1069,7 +1111,9 @@ export default function GameItemsPage() {
                               <SelectValue placeholder="Select rarity" />
                             </SelectTrigger>
                             <SelectContent className="border-purple-500/30 bg-gray-800 text-white">
-                              {RARITIES.filter(rarity => rarity !== "All Rarities").map((rarity) => (
+                              {RARITIES.filter(
+                                (rarity) => rarity !== "All Rarities",
+                              ).map((rarity) => (
                                 <SelectItem key={rarity} value={rarity}>
                                   {rarity}
                                 </SelectItem>
@@ -1336,7 +1380,9 @@ export default function GameItemsPage() {
                           <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                         <SelectContent className="border-blue-500/30 bg-gray-800 text-white">
-                          {CATEGORIES.filter(cat => cat !== "All Categories").map((category) => (
+                          {CATEGORIES.filter(
+                            (cat) => cat !== "All Categories",
+                          ).map((category) => (
                             <SelectItem key={category} value={category}>
                               {category}
                             </SelectItem>
@@ -1360,11 +1406,13 @@ export default function GameItemsPage() {
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent className="border-yellow-500/30 bg-gray-800 text-white">
-                          {TYPES.filter(type => type !== "All Types").map((type) => (
-                            <SelectItem key={type} value={type}>
-                              {type}
-                            </SelectItem>
-                          ))}
+                          {TYPES.filter((type) => type !== "All Types").map(
+                            (type) => (
+                              <SelectItem key={type} value={type}>
+                                {type}
+                              </SelectItem>
+                            ),
+                          )}
                         </SelectContent>
                       </Select>
                     </div>
@@ -1384,7 +1432,9 @@ export default function GameItemsPage() {
                           <SelectValue placeholder="Select rarity" />
                         </SelectTrigger>
                         <SelectContent className="border-purple-500/30 bg-gray-800 text-white">
-                          {RARITIES.filter(rarity => rarity !== "All Rarities").map((rarity) => (
+                          {RARITIES.filter(
+                            (rarity) => rarity !== "All Rarities",
+                          ).map((rarity) => (
                             <SelectItem key={rarity} value={rarity}>
                               {rarity}
                             </SelectItem>

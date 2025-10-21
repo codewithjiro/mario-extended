@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     if (!name || !category) {
       return NextResponse.json(
         { error: "Missing required fields: name, category" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       rarity,
       description: description ?? null,
       imageUrl: imageUrl ?? null,
-      userId, 
+      userId,
     });
 
     return NextResponse.json({ message: "Item added successfully" });

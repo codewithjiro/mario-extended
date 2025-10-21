@@ -31,7 +31,7 @@ export const gameItems = createTable("game_items", (d) => ({
   category: d.varchar("category", { length: 50 }).notNull(),
   type: d.varchar("type", { length: 50 }).default("Generic").notNull(),
   power: d.varchar("power", { length: 100 }),
-  effect: d.varchar("effect", { length: 255 }), 
+  effect: d.varchar("effect", { length: 255 }),
   rarity: d.varchar("rarity", { length: 50 }).default("Common"),
   description: d.text("description"),
   imageUrl: d.varchar("image_url", { length: 512 }),

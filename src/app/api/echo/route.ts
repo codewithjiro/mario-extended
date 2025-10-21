@@ -28,10 +28,7 @@ export async function POST(req: NextRequest) {
       .where(ilike(gameItems.name, `%${body.postBody}%`));
 
     if (foundItems.length === 0) {
-      return Response.json(
-        { error: "No results found." },
-        { status: 404 },
-      );
+      return Response.json({ error: "No results found." }, { status: 404 });
     }
 
     return Response.json(

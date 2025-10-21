@@ -24,7 +24,7 @@ export const ourFileRouter = {
         effect: z.string().optional(),
         rarity: z.string().optional(),
         description: z.string().optional(),
-      })
+      }),
     )
 
     // ✅ Auth middleware (runs before upload)
@@ -41,7 +41,6 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("✅ Upload complete for user:", metadata.userId);
       console.log("📦 File URL:", file.ufsUrl);
-
 
       return { uploadedBy: metadata.userId, imageUrl: file.ufsUrl };
     }),
