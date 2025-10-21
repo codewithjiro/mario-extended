@@ -135,8 +135,10 @@ export default function Home() {
               <span className="font-semibold text-yellow-400">
                 modern data hub
               </span>{" "}
-              for everything in the Mario universe. Powered by Next.js and
-              PostgreSQL with real-time capabilities.
+              It acts as the central hub where all information about characters,
+              power-ups, weapons, items, and more is created, updated, and
+              distributed to connected platforms — like XDimension, the public
+              explorer.
             </p>
 
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">

@@ -28,10 +28,10 @@ export const apiKeys = createTable("api_keys", (d) => ({
 export const gameItems = createTable("game_items", (d) => ({
   id: d.serial("id").primaryKey(),
   name: d.varchar("name", { length: 100 }).notNull(),
-  category: d.varchar("category", { length: 50 }).notNull(), // e.g. "Character" or "Power-up"
+  category: d.varchar("category", { length: 50 }).notNull(),
   type: d.varchar("type", { length: 50 }).default("Generic").notNull(),
-  power: d.varchar("power", { length: 100 }), // for characters
-  effect: d.varchar("effect", { length: 255 }), // for power-ups
+  power: d.varchar("power", { length: 100 }),
+  effect: d.varchar("effect", { length: 255 }), 
   rarity: d.varchar("rarity", { length: 50 }).default("Common"),
   description: d.text("description"),
   imageUrl: d.varchar("image_url", { length: 512 }),
