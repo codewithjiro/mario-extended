@@ -238,7 +238,7 @@ export default function GameItemsPage() {
       }
       const data = await res.json();
       setGameItems(data.items || []);
-      toast.success(`🎮 Loaded ${data.items?.length || 0} items`);
+      toast.success(`Loaded ${data.items?.length || 0} items`);
     } catch (err) {
       handleError(err, "loading items");
     } finally {
@@ -332,7 +332,7 @@ export default function GameItemsPage() {
         );
       }
 
-      toast.success("🎉 Item created successfully!", { id: "save" });
+      toast.success("Item created successfully!", { id: "save" });
       setOpen(false);
       resetForm();
       await loadItems();
@@ -406,7 +406,7 @@ export default function GameItemsPage() {
   const handleDelete = async (item: GameItem) => {
     if (
       !confirm(
-        `🗑️ Are you sure you want to delete "${item.name}"? This action cannot be undone.`,
+        `Are you sure you want to delete "${item.name}"? This action cannot be undone.`,
       )
     )
       return;

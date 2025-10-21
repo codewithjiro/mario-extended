@@ -53,7 +53,7 @@ export default function DocsPage() {
 
   // GET all characters
   async function runGET() {
-    const res = await fetch(`${baseUrl}/api/ping`, {
+    const res = await fetch(`${baseUrl}/api/echo`, {
       headers: {
         "x-api-key": key,
       },
@@ -105,6 +105,22 @@ export default function DocsPage() {
     characters: `curl -X POST \\\n-H 'x-api-key: YOUR_API_KEY' \\\n-H 'Content-Type: application/json' \\\n-d '{"postBody": "Mario"}' \\\n${baseUrl}/api/characters`,
   };
 
+  async function runOPTIONS() {
+    const res = await fetch(`${baseUrl}/api/echo`, {
+      method: "OPTIONS",
+      // headers: {
+      //   Origin: "https://localhost:3000",
+      //   "Access-Control-Request-Method": "POST",
+      //   "Access-Control-Request-Headers": "x-api-key, Content-Type",
+      // },
+    });
+    setOut(
+      "Status: $(res.status)\n" +
+        Array.from(res.headers.entries())
+          .map(([key, value]) => `${key}: ${value}`)
+          .join("\n"),
+    );
+  }
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-8 sm:px-6 lg:px-8">
@@ -429,7 +445,7 @@ console.log(data);`}
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     <Button
                       onClick={runGET}
                       className="bg-gradient-to-r from-green-500 to-emerald-500 text-sm text-white shadow-lg transition-all hover:shadow-xl"
@@ -443,6 +459,13 @@ console.log(data);`}
                     >
                       <Search className="mr-2 h-4 w-4" />
                       Test POST
+                    </Button>
+                    <Button
+                      onClick={runOPTIONS}
+                      className="bg-gradient-to-r from-purple-500 to-indigo-500 text-sm text-white shadow-lg transition-all hover:shadow-xl"
+                    >
+                      <Search className="mr-2 h-4 w-4" />
+                      Test OPTIONS
                     </Button>
                   </div>
 
