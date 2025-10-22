@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Crown, Star, Zap, Sparkles } from "lucide-react";
+import { Crown, Star, Zap, Sparkles, ArrowLeft, Gamepad2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,64 +12,61 @@ import {
 } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
+import Link from "next/link";
 
 export default function PricingSection() {
   const plans = [
     {
-      name: "Mushroom Tier",
+      name: "Starter",
       price: "₱0",
       description: "Perfect for learning and personal projects",
-      requests: "60 requests / minute",
+      requests: "5 requests / 10s",
       features: [
         "Basic API Access",
         "Community Support",
         "Standard Rate Limits",
         "Public Data Only",
-        "Basic Documentation",
       ],
-      cta: "Start Adventure",
+      cta: "Get Started",
       popular: false,
       icon: Star,
-      gradient: "from-green-500 to-emerald-500",
-      badge: "Starter",
+      gradient: "from-gray-500 to-gray-400",
+      badge: "Free",
     },
     {
-      name: "Fire Flower",
+      name: "Professional",
       price: "₱199",
       description: "Ideal for serious projects and applications",
       requests: "300 requests / minute",
       features: [
-        "All Mushroom Features",
+        "All Starter Features",
         "Priority Support",
         "Webhook Support",
         "Advanced Analytics",
         "Early Access Features",
-        "Extended Rate Limits",
       ],
-      cta: "Get Power-Up",
+      cta: "Upgrade Now",
       popular: true,
       icon: Zap,
-      gradient: "from-red-500 to-orange-500",
+      gradient: "from-orange-500 to-red-500",
       badge: "Most Popular",
     },
     {
-      name: "Starman",
+      name: "Enterprise",
       price: "₱999",
       description: "For mission-critical applications",
       requests: "Unlimited requests",
       features: [
-        "All Fire Flower Features",
+        "All Pro Features",
         "Dedicated Support",
         "Custom Integrations",
         "SLA Guarantee",
         "Custom Data Models",
-        "White-label Options",
-        "API Customization",
       ],
-      cta: "Go Invincible",
+      cta: "Contact Sales",
       popular: false,
       icon: Crown,
-      gradient: "from-yellow-500 to-yellow-300",
+      gradient: "from-purple-500 to-pink-500",
       badge: "Enterprise",
     },
   ];
@@ -89,6 +86,20 @@ export default function PricingSection() {
       </div>
 
       <div className="relative z-10 px-8 py-16">
+        {/* Back to Home Button */}
+        <div className="mb-8">
+          <Button
+            asChild
+            variant="outline"
+            className="border-gray-600 bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 hover:text-white"
+          >
+            <Link href="/">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
+
         <div className="mx-auto max-w-7xl">
           {/* Header */}
           <div className="mb-16 text-center">
@@ -97,9 +108,9 @@ export default function PricingSection() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <Badge className="mb-4 border-yellow-500/50 bg-yellow-500/10 px-4 py-2 text-yellow-400 backdrop-blur-lg">
-                <Crown className="mr-2 h-4 w-4" />
-                Power-Up Your Adventure
+              <Badge className="mb-4 border-orange-500/50 bg-orange-500/10 px-4 py-2 text-orange-400 backdrop-blur-lg">
+                <Gamepad2 className="mr-2 h-4 w-4" />
+                MarioX Plans
               </Badge>
             </motion.div>
 
@@ -109,8 +120,8 @@ export default function PricingSection() {
               transition={{ duration: 0.5, delay: 0.7 }}
               className="mb-6 text-5xl font-black"
             >
-              <span className="bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 bg-clip-text text-transparent">
-                Choose Your Power Level
+              <span className="bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 bg-clip-text text-transparent">
+                Choose Your Plan
               </span>
             </motion.h2>
 
@@ -120,8 +131,7 @@ export default function PricingSection() {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="mx-auto max-w-2xl text-xl text-gray-300"
             >
-              Start your quest for free and level up as you grow. No hidden
-              blocks, just pure power!
+              Scale your game item discovery and sharing experience with our flexible pricing plans
             </motion.p>
           </div>
 
@@ -137,14 +147,23 @@ export default function PricingSection() {
               >
                 <Card
                   className={`relative h-full overflow-hidden border-0 bg-gradient-to-br from-gray-800/60 to-gray-900/80 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
-                    plan.popular ? "ring-2 ring-yellow-500/50" : ""
+                    plan.popular ? "ring-2 ring-orange-500/50" : ""
                   }`}
                 >
                   {/* Popular Badge */}
                   {plan.popular && (
                     <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 transform">
-                      <Badge className="bg-gradient-to-r from-red-500 to-orange-500 px-6 py-2 font-bold text-white shadow-lg">
+                      <Badge className="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-2 font-bold text-white shadow-lg">
                         <Sparkles className="mr-2 h-3 w-3" />
+                        {plan.badge}
+                      </Badge>
+                    </div>
+                  )}
+
+                  {/* Plan Badge for non-popular plans */}
+                  {!plan.popular && (
+                    <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 transform">
+                      <Badge className="bg-gradient-to-r from-gray-500 to-gray-600 px-6 py-2 font-bold text-white shadow-lg">
                         {plan.badge}
                       </Badge>
                     </div>
@@ -190,7 +209,7 @@ export default function PricingSection() {
                     </div>
 
                     {/* Requests */}
-                    <div className="mb-6 flex items-center justify-center font-semibold text-yellow-400">
+                    <div className="mb-6 flex items-center justify-center font-semibold text-orange-400">
                       <Zap className="mr-2 h-4 w-4" />
                       {plan.requests}
                     </div>
@@ -222,15 +241,17 @@ export default function PricingSection() {
                       asChild
                       className={`w-full gap-2 rounded-xl py-6 text-base font-bold transition-all duration-300 ${
                         plan.popular
-                          ? `bg-gradient-to-r ${plan.gradient} text-white shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30`
-                          : "bg-gray-700/50 text-white backdrop-blur-sm hover:bg-gray-600/50"
+                          ? `bg-gradient-to-r ${plan.gradient} text-white shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30`
+                          : plan.name === "Starter"
+                          ? "bg-gray-700/50 text-white backdrop-blur-sm hover:bg-gray-600/50"
+                          : `bg-gradient-to-r ${plan.gradient} text-white shadow-lg hover:shadow-xl`
                       }`}
                       size="lg"
                     >
-                      <a href="/sign-in">
+                      <Link href={plan.name === "Enterprise" ? "/contact" : "/signup"}>
                         {plan.popular && <Sparkles className="h-4 w-4" />}
                         {plan.cta}
-                      </a>
+                      </Link>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -246,10 +267,9 @@ export default function PricingSection() {
             className="mt-12 text-center"
           >
             <p className="text-gray-400">
-              All plans include secure access, regular updates, and our
-              legendary support.{" "}
-              <span className="text-yellow-400">
-                No credit card required to start!
+              All plans include secure API access, regular updates, and community features.{" "}
+              <span className="text-orange-400">
+                Start free and upgrade anytime!
               </span>
             </p>
           </motion.div>

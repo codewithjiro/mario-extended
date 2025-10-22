@@ -298,9 +298,9 @@ export default function DocsPage() {
                           </CardHeader>
                           <CardContent className="pt-0">
                             <p className="text-sm text-gray-300">
-                              Free: 60 requests/minute
+                              Starter: 5 requests / 10s
                               <br />
-                              Pro: 300 requests/minute
+                              Professional: 300 requests / minute
                               <br />
                               Enterprise: Unlimited
                             </p>

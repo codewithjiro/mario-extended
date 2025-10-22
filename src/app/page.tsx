@@ -313,7 +313,7 @@ export default function Home() {
                 name: "Starter",
                 price: "₱0",
                 description: "Perfect for learning and personal projects",
-                requests: "60 requests / minute",
+                requests: "5 requests / 10s",
                 features: [
                   "Basic API Access",
                   "Community Support",
