@@ -236,9 +236,9 @@ export default function Home() {
                 {[
                   {
                     icon: Users,
-                    title: "Character Database",
+                    title: "Items",
                     description:
-                      "Detailed profiles of heroes and villains across the entire Mario franchise with rich metadata and relationships.",
+                      "Comprehensive database of game items, including stats, effects, rarity, and more, for quick reference and management.",
                     color: "from-red-500 to-pink-500",
                   },
                   {
