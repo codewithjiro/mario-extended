@@ -1327,18 +1327,18 @@ export default function GameItemsPage() {
               }
             }}
           >
-            <DialogContent className="max-w-4xl rounded-3xl border border-red-500/30 bg-gray-900/95 text-white shadow-2xl backdrop-blur-2xl">
-              <DialogHeader className="pb-4">
-                <DialogTitle className="bg-gradient-to-r from-red-400 to-yellow-400 bg-clip-text text-2xl font-black text-transparent">
+            <DialogContent className="mx-4 max-w-[95vw] rounded-2xl border border-red-500/30 bg-gray-900/95 text-white shadow-2xl backdrop-blur-2xl md:mx-0 md:rounded-3xl">
+              <DialogHeader className="pb-3 md:pb-4">
+                <DialogTitle className="bg-gradient-to-r from-red-400 to-yellow-400 bg-clip-text px-2 text-center text-xl font-black text-transparent md:px-0 md:text-left md:text-2xl">
                   {editingItem ? "Enhance Power-Up" : "Forge New Item"}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300">
+                <DialogDescription className="px-2 text-center text-sm text-gray-300 md:px-0 md:text-left md:text-base">
                   Craft your ultimate game item with legendary properties
                 </DialogDescription>
               </DialogHeader>
 
               {error && (
-                <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-3">
+                <div className="mx-2 rounded-lg border border-red-500/30 bg-red-500/10 p-3 md:mx-0">
                   <div className="flex items-center gap-2">
                     <AlertCircle className="h-4 w-4 text-red-400" />
                     <p className="text-sm text-red-400">{error}</p>
@@ -1346,10 +1346,10 @@ export default function GameItemsPage() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 gap-6 py-4 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 py-2 md:gap-6 md:py-4 lg:grid-cols-3">
                 {/* Left Column - Form Fields */}
-                <div className="space-y-4 lg:col-span-2">
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-4 px-2 md:px-0 lg:col-span-2">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
                     {/* Item Name */}
                     <div className="space-y-2 sm:col-span-2">
                       <Label className="text-sm font-medium text-red-300">
@@ -1361,7 +1361,7 @@ export default function GameItemsPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="border-red-500/30 bg-gray-800/60 text-white focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30"
+                        className="border-red-500/30 bg-gray-800/60 text-sm text-white focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30 md:text-base"
                       />
                     </div>
 
@@ -1376,14 +1376,18 @@ export default function GameItemsPage() {
                           setFormData({ ...formData, category: value })
                         }
                       >
-                        <SelectTrigger className="border-blue-500/30 bg-gray-800/60 text-white focus:ring-1 focus:ring-blue-500/30">
+                        <SelectTrigger className="border-blue-500/30 bg-gray-800/60 text-sm text-white focus:ring-1 focus:ring-blue-500/30 md:text-base">
                           <SelectValue placeholder="Select category" />
                         </SelectTrigger>
-                        <SelectContent className="border-blue-500/30 bg-gray-800 text-white">
+                        <SelectContent className="max-h-[200px] border-blue-500/30 bg-gray-800 text-white md:max-h-none">
                           {CATEGORIES.filter(
                             (cat) => cat !== "All Categories",
                           ).map((category) => (
-                            <SelectItem key={category} value={category}>
+                            <SelectItem
+                              key={category}
+                              value={category}
+                              className="text-sm md:text-base"
+                            >
                               {category}
                             </SelectItem>
                           ))}
@@ -1402,13 +1406,17 @@ export default function GameItemsPage() {
                           setFormData({ ...formData, type: value })
                         }
                       >
-                        <SelectTrigger className="border-yellow-500/30 bg-gray-800/60 text-white focus:ring-1 focus:ring-yellow-500/30">
+                        <SelectTrigger className="border-yellow-500/30 bg-gray-800/60 text-sm text-white focus:ring-1 focus:ring-yellow-500/30 md:text-base">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
-                        <SelectContent className="border-yellow-500/30 bg-gray-800 text-white">
+                        <SelectContent className="max-h-[200px] border-yellow-500/30 bg-gray-800 text-white md:max-h-none">
                           {TYPES.filter((type) => type !== "All Types").map(
                             (type) => (
-                              <SelectItem key={type} value={type}>
+                              <SelectItem
+                                key={type}
+                                value={type}
+                                className="text-sm md:text-base"
+                              >
                                 {type}
                               </SelectItem>
                             ),
@@ -1428,14 +1436,18 @@ export default function GameItemsPage() {
                           setFormData({ ...formData, rarity: value })
                         }
                       >
-                        <SelectTrigger className="border-purple-500/30 bg-gray-800/60 text-white focus:ring-1 focus:ring-purple-500/30">
+                        <SelectTrigger className="border-purple-500/30 bg-gray-800/60 text-sm text-white focus:ring-1 focus:ring-purple-500/30 md:text-base">
                           <SelectValue placeholder="Select rarity" />
                         </SelectTrigger>
-                        <SelectContent className="border-purple-500/30 bg-gray-800 text-white">
+                        <SelectContent className="max-h-[200px] border-purple-500/30 bg-gray-800 text-white md:max-h-none">
                           {RARITIES.filter(
                             (rarity) => rarity !== "All Rarities",
                           ).map((rarity) => (
-                            <SelectItem key={rarity} value={rarity}>
+                            <SelectItem
+                              key={rarity}
+                              value={rarity}
+                              className="text-sm md:text-base"
+                            >
                               {rarity}
                             </SelectItem>
                           ))}
@@ -1454,12 +1466,16 @@ export default function GameItemsPage() {
                           setFormData({ ...formData, power: value })
                         }
                       >
-                        <SelectTrigger className="border-green-500/30 bg-gray-800/60 text-white focus:ring-1 focus:ring-green-500/30">
+                        <SelectTrigger className="border-green-500/30 bg-gray-800/60 text-sm text-white focus:ring-1 focus:ring-green-500/30 md:text-base">
                           <SelectValue placeholder="Select power" />
                         </SelectTrigger>
-                        <SelectContent className="border-green-500/30 bg-gray-800 text-white">
+                        <SelectContent className="max-h-[200px] border-green-500/30 bg-gray-800 text-white md:max-h-none">
                           {POWER_LEVELS.map((power) => (
-                            <SelectItem key={power} value={power}>
+                            <SelectItem
+                              key={power}
+                              value={power}
+                              className="text-sm md:text-base"
+                            >
                               {power}
                             </SelectItem>
                           ))}
@@ -1478,12 +1494,16 @@ export default function GameItemsPage() {
                           setFormData({ ...formData, effect: value })
                         }
                       >
-                        <SelectTrigger className="border-cyan-500/30 bg-gray-800/60 text-white focus:ring-1 focus:ring-cyan-500/30">
+                        <SelectTrigger className="border-cyan-500/30 bg-gray-800/60 text-sm text-white focus:ring-1 focus:ring-cyan-500/30 md:text-base">
                           <SelectValue placeholder="Select effect" />
                         </SelectTrigger>
-                        <SelectContent className="border-cyan-500/30 bg-gray-800 text-white">
+                        <SelectContent className="max-h-[200px] border-cyan-500/30 bg-gray-800 text-white md:max-h-none">
                           {EFFECTS.map((effect) => (
-                            <SelectItem key={effect} value={effect}>
+                            <SelectItem
+                              key={effect}
+                              value={effect}
+                              className="text-sm md:text-base"
+                            >
                               {effect}
                             </SelectItem>
                           ))}
@@ -1506,20 +1526,20 @@ export default function GameItemsPage() {
                           description: e.target.value,
                         })
                       }
-                      className="min-h-[100px] border-gray-600 bg-gray-800/60 text-white focus:border-red-500/30 focus:ring-1 focus:ring-red-500/30"
+                      className="min-h-[80px] border-gray-600 bg-gray-800/60 text-sm text-white focus:border-red-500/30 focus:ring-1 focus:ring-red-500/30 md:min-h-[100px] md:text-base"
                     />
                   </div>
                 </div>
 
                 {/* Right Column - Image Upload */}
-                <div className="space-y-4 lg:col-span-1">
+                <div className="space-y-4 px-2 md:px-0 lg:col-span-1">
                   <div className="space-y-3">
                     <Label className="text-sm font-medium text-red-300">
                       Power-Up Image
                     </Label>
 
                     {createImageUrl ? (
-                      <div className="group relative w-full overflow-hidden rounded-2xl border-2 border-red-500/30 bg-gray-800/50">
+                      <div className="group relative w-full overflow-hidden rounded-xl border-2 border-red-500/30 bg-gray-800/50 md:rounded-2xl">
                         <div className="aspect-square w-full overflow-hidden">
                           <img
                             src={createImageUrl}
@@ -1530,7 +1550,7 @@ export default function GameItemsPage() {
                         <Button
                           size="icon"
                           variant="outline"
-                          className="absolute top-3 right-3 border-none bg-black/60 text-white backdrop-blur-sm hover:bg-black/80"
+                          className="absolute top-2 right-2 h-6 w-6 border-none bg-black/60 text-white backdrop-blur-sm hover:bg-black/80 md:top-3 md:right-3 md:h-8 md:w-8"
                           onClick={() => {
                             setCreateImageUrl(null);
                             setCreateImageName(null);
@@ -1538,10 +1558,10 @@ export default function GameItemsPage() {
                               createInputRef.current.value = "";
                           }}
                         >
-                          <X className="h-4 w-4" />
+                          <X className="h-3 w-3 md:h-4 md:w-4" />
                         </Button>
                         {createImageName && (
-                          <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                          <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-3">
                             <p className="truncate text-xs text-gray-200">
                               {createImageName}
                             </p>
@@ -1551,9 +1571,9 @@ export default function GameItemsPage() {
                     ) : (
                       <div
                         onClick={() => createInputRef.current?.click()}
-                        className="flex aspect-square w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-red-500/30 bg-gray-800/40 p-6 transition-all hover:border-red-500/50 hover:bg-gray-800/60"
+                        className="flex aspect-square w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-red-500/30 bg-gray-800/40 p-4 transition-all hover:border-red-500/50 hover:bg-gray-800/60 md:rounded-2xl md:p-6"
                       >
-                        <ImageIcon className="mb-3 h-12 w-12 text-red-400" />
+                        <ImageIcon className="mb-2 h-8 w-8 text-red-400 md:mb-3 md:h-12 md:w-12" />
                         <p className="text-center text-sm font-medium text-gray-300">
                           Upload Power-Up Image
                         </p>
@@ -1596,24 +1616,24 @@ export default function GameItemsPage() {
               </div>
 
               {/* Footer */}
-              <DialogFooter className="flex flex-col gap-2 border-t border-gray-700/50 pt-4 sm:flex-row sm:justify-between sm:gap-0">
-                <div className="text-xs text-gray-400">
+              <DialogFooter className="flex flex-col gap-3 border-t border-gray-700/50 px-2 pt-4 sm:flex-row sm:justify-between sm:gap-0 md:px-0">
+                <div className="text-center text-xs text-gray-400 md:text-left">
                   {editingItem
                     ? "Enhancing existing power-up"
                     : "Forging new legendary item"}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex w-full gap-2 sm:w-auto">
                   <Button
                     variant="outline"
                     onClick={() => setOpen(false)}
-                    className="border-gray-600 bg-gray-800/60 text-gray-300"
+                    className="flex-1 border-gray-600 bg-gray-800/60 text-sm text-gray-300 sm:flex-none md:text-base"
                   >
                     <X className="mr-2 h-4 w-4" /> Cancel
                   </Button>
                   <Button
                     onClick={handleSave}
                     disabled={isUploading || !formData.name.trim()}
-                    className="bg-gradient-to-r from-red-500 to-yellow-500 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:hover:scale-100"
+                    className="flex-1 bg-gradient-to-r from-red-500 to-yellow-500 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:hover:scale-100 sm:flex-none md:text-base"
                   >
                     {isUploading ? (
                       <>
