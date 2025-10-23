@@ -1,29 +1,32 @@
-# Create T3 App
+# 🍄 Mario — Extended
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+### 🧩 The Ultimate Modern Data Hub for the Mario Universe
 
-## What's next? How do I make an app with this?
+**Mario — Extended** (also known as **MarioX**) is the **central data hub** where all information about **characters, power-ups, weapons, items, and more** is created, updated, and distributed to connected platforms — including **[XDimension](https://x-dimension-nine.vercel.app)**, the official public explorer.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+![Mario — Extended Banner](https://via.placeholder.com/1200x400/1f2937/ffffff?text=Mario+Extended+-+Central+Data+Hub)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+---
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## 🚀 Overview
 
-## Learn More
+Mario — Extended provides a **modern API infrastructure** that enables developers and fans to explore and integrate rich Mario universe data into their own apps.  
+It’s designed for **reliability, accessibility, and security**, serving as the single source of truth for all Mario-related data.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+---
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## ⚙️ Features
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+✅ **Centralized Database** — Unified data for characters, power-ups, and more.  
+✅ **RESTful API Endpoints** — Clean, structured JSON responses.  
+✅ **Strict CORS Protection** — Only allows requests from **XDimension**.  
+✅ **Built-in Rate Limiting** — Limited to **5 requests per 10 seconds** per IP or API key.  
+✅ **Upload Support** — Uses UploadThing for secure asset management.  
+✅ **Extensible Design** — Easily supports new Mario universe entities.
 
-## How do I deploy this?
+---
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## 🌐 API Access
+
+All API routes require a valid API key and are accessible **only** from the **XDimension** frontend.
+
