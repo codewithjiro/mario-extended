@@ -4,7 +4,12 @@
 
 **Mario — Extended** (also known as **MarioX**) is the **central data hub** where all information about **characters, power-ups, weapons, items, and more** is created, updated, and distributed to connected platforms — including **[XDimension](https://x-dimension-nine.vercel.app)**, the official public explorer.
 
-![Mario — Extended Banner](https://via.placeholder.com/1200x400/1f2937/ffffff?text=Mario+Extended+-+Central+Data+Hub)
+---
+
+
+## 🌐 Live Demo
+
+🔗 **Visit Now:** [mario-extended.vercel.app](https://mario-extended.vercel.app/)
 
 ---
 
